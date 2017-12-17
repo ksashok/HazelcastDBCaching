@@ -1,6 +1,6 @@
 package com.ashok.dao.impl;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.cache.Cache;
@@ -25,12 +25,11 @@ public class CacheUserDaoImpl implements UserDAO{
 	}
 
 	public List<User> findById(int id) {
-		System.out.println("hello");
-		List ll = new LinkedList();
+		List<User> ll = new ArrayList<User>();
 		String userName = cache.get(id);
 		
 		if(userName != null){
-			System.out.println("inside");
+			System.out.println("Fetching Data from Cache . . . ");
 			int i = id;
 			String str = userName;
 			User user = new User(i, str);
@@ -40,10 +39,13 @@ public class CacheUserDaoImpl implements UserDAO{
 		
 		ll = wrappedUserDao.findById(id);
 		if(ll != null){
-			System.out.println("outside");
+			System.out.println("Fetching Data from MySQL DB . . . ");
 			User user = (User) ll.get(0);
+			System.out.println("Inserting Data into Cache . . . ");
 			cache.put(id,user.getName());
+			System.out.println("Inserted into Cache !");
 			return ll;
+
 		}
 		return null;
 	}

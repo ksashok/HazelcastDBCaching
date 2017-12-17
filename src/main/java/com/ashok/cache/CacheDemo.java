@@ -14,7 +14,7 @@ import com.hazelcast.core.HazelcastInstance;
 public class CacheDemo {
 
 	public static void main(String[] args) {
-		HazelcastInstance hz = Hazelcast.newHazelcastInstance();
+	//	HazelcastInstance hz = Hazelcast.newHazelcastInstance();
 		CachingProvider provider = Caching.getCachingProvider("com.hazelcast.cache.HazelcastCachingProvider");
 		CacheManager manager = provider.getCacheManager();
         MutableConfiguration<Integer, String> configuration = new MutableConfiguration<Integer, String>();
@@ -24,7 +24,7 @@ public class CacheDemo {
         UserDAO userdao = new CacheUserDaoImpl(cache, new UserDaoImpl());
         
        
-        System.out.println(userdao.findById(4));
+        System.out.println(userdao.findById(2));
         
 
 
