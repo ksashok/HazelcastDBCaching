@@ -24,7 +24,7 @@ public class CacheDemo {
         UserDAO userdao = new CacheUserDaoImpl(cache, new UserDaoImpl());
         
        
-        System.out.println(userdao.findById(3));
+        System.out.println(userdao.findById(4));
         
 
 
