@@ -20,8 +20,7 @@ public class CacheUserDaoImpl implements UserDAO{
 	}
 
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return wrappedUserDao.findAll();
 	}
 
 	public List<User> findById(int id) {
@@ -40,7 +39,7 @@ public class CacheUserDaoImpl implements UserDAO{
 		ll = wrappedUserDao.findById(id);
 		if(ll != null){
 			System.out.println("Fetching Data from MySQL DB . . . ");
-			User user = (User) ll.get(0);
+			User user = ll.get(0);
 			System.out.println("Inserting Data into Cache . . . ");
 			cache.put(id,user.getName());
 			System.out.println("Inserted into Cache !");
